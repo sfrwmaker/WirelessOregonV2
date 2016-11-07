@@ -17,8 +17,10 @@ void loop () {
 
   int temp = 0;
   byte humm = 0;
+  byte ch = 0;
   byte id = 0;
-  if (orscV2.receiveData(id, temp, humm, true)) {
+  bool batt = false;
+  if (orscV2.receiveData(ch, id, temp, humm, batt, true)) {
     Serial.print("ID = ");     Serial.print(id, HEX);
     Serial.print(", Temp = "); Serial.print(temp/10); Serial.print("."); Serial.print(temp%10);
     Serial.print(", Humm = "); Serial.println(humm);
