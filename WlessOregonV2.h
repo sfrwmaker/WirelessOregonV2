@@ -15,7 +15,7 @@ class directPort {
     virtual void sendZero(void);
     virtual void selectPin(byte pin) {
       set_mask = 0;
-      if ((pin >= 0) && (pin <= 8)) {
+      if (pin <= 7) {
         set_mask = 1 << pin;
         clr_mask = ~set_mask;
       }
@@ -30,7 +30,7 @@ class directPort {
 
 class directPortB : public directPort {
   public:
-    directPortB() {  }
+    directPortB() { }
     virtual void sendOne(void);
     virtual void sendZero(void);
 };
