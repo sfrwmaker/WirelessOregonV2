@@ -50,7 +50,7 @@ void OregonSensor::sendData(const byte *data, byte size) {
     byte d = data[i];
     (d & m)? sendOne(): sendZero(); m <<= 1;
     (d & m)? sendOne(): sendZero(); m <<= 1;
-    (d & m)? sendOne(): sendZero();; m <<= 1;
+    (d & m)? sendOne(): sendZero(); m <<= 1;
     (d & m)? sendOne(): sendZero(); m <<= 1;
     (d & m)? sendOne(): sendZero(); m <<= 1;
     (d & m)? sendOne(): sendZero(); m <<= 1;
@@ -139,10 +139,6 @@ void OregonSensor::sendTempHumidity(int temp, byte humm, bool battery) {  // tem
   }
   calculateAndSetChecksum();
 
-for (byte i = 0; i < 9; ++i) {
-  Serial.print(buffer[i], HEX);
-}
-Serial.println(".");
   sendOregon();                                     // The v2.1 protocol send the message two times
   delayMicroseconds(TWOTIME*8);
   sendOregon();
@@ -262,7 +258,6 @@ void OregonDecoderV2::gotBit (char value) {
 
 char OregonDecoderV2::decode(word width) {
   if (200 <= width && width < 1200) {
-    //Serial.println(width);
     byte w = width >= 700;
  
     switch (state) {
