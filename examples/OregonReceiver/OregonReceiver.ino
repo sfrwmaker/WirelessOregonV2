@@ -20,7 +20,7 @@ void loop () {
   uint8_t humm = 0;
   bool battOK = false;
   if (orscV2.receiveData(ch, id, temp, humm, battOK)) {
-    Serial.print("Channel = "); Serial.print(id, HEX);
+    Serial.print("Channel = "); Serial.print(ch, HEX);
     Serial.print(", ID = ");    Serial.print(id, HEX);
     char minus = ' ';
     if (temp < 0) {
