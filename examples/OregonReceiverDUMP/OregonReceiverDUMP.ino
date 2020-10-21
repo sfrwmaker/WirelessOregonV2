@@ -19,7 +19,7 @@ void reportSerial(const uint8_t *raw_data, const uint8_t count) {
 void setup () {
     Serial.begin(115200);                         // Enable Serial for packet DUMP output
     Serial.println("\n[ookDecoder]");
-    orscV2.begin(digitalPinToInterrupt(4));
+    orscV2.begin(digitalPinToInterrupt(2));
     orscV2.attachDebugCallback(reportSerial);
 }
 
@@ -30,7 +30,7 @@ void loop () {
   uint8_t humm = 0;
   bool battOK = false;
   if (orscV2.receiveData(ch, id, temp, humm, battOK)) {
-    Serial.print("Channel = "); Serial.print(id, HEX);
+    Serial.print("Channel = "); Serial.print(ch, HEX);
     Serial.print(", ID = ");    Serial.print(id, HEX);
     char minus = ' ';
     if (temp < 0) {
