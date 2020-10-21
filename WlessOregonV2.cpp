@@ -8,7 +8,7 @@ OregonSensor::OregonSensor(uint8_t txPin, uint8_t channel, uint8_t sensorID, boo
     tx_port         = digitalPinToPort(tx_pin);
 
     existsHumidity = Humidity;
-    uint16_t type = 0xEA4C;                                  // by default emulate TNHN132N
+    uint16_t type = 0xEA4C;								// by default emulate THGN132N
     if (existsHumidity)  type = 0x1A2D;                 // emulate THGR2228N
         
     buffer[0] = type >> 8;
@@ -62,6 +62,7 @@ void OregonSensor::sendData(const uint8_t *data, uint8_t size) {
 
 void OregonSensor::sendOregon(void) {
     sendPreamble();
+	//?sendSync();
     uint8_t size = 8;
     if (existsHumidity) size = 9;
     sendData(buffer, size);
