@@ -22,6 +22,9 @@ void loop() {
   static byte humidity = 0;                 // The relative himidity 0 - 100%
   static bool battOK = true;                // The battery status
   digitalWrite(LED_PIN, HIGH);
+  Serial.print("Sending data of sensor "); Serial.print(sensorID, HEX);
+  Serial.print(": temp = "); Serial.print(temp);
+  Serial.print(", humidity = "); Serial.println(humidity);
   os.sendTempHumidity(temp, humidity, battOK);
   digitalWrite(LED_PIN, LOW);
 
